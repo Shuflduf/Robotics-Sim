@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtn6hmrw2qspb"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1u4n7"]
+height = 0.1
+
+[node name="VehicleWheel3D" type="VehicleWheel3D"]
+use_as_traction = true
+use_as_steering = true
+wheel_rest_length = 0.2
+wheel_friction_slip = 1.0
+suspension_stiffness = 30.0
+damping_compression = 0.8
+damping_relaxation = 0.9
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1u4n7")
