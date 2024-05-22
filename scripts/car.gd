@@ -38,9 +38,9 @@ func _ready():
 	await turn(DIRECTION.Right, 5, 2.2)
 	await move(-10, 0.5)
 	await stop(20)
-	for i in 3:	
-		brake = 100
-		await push_down()
+	#for i in 3:	
+		#brake = 100
+		#await push_down()
 	brake = 0
 	await move(300, 10)
 		
@@ -79,9 +79,9 @@ func let_go(force: int = 0):
 	return
 		
 func push_down():
-	motor.run(80)
-	await get_tree().create_timer(2).timeout
-	motor.run(-120)
+	motor.run(60)
+	await get_tree().create_timer(1.5).timeout
+	motor.run(-60)
 	await get_tree().create_timer(0.8).timeout
 	motor.run(0)
 	await timer(0.5)
