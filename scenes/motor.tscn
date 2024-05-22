@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbo3hpr1cxxgu"]
+
+[ext_resource type="Script" path="res://scripts/motor.gd" id="1_p4ueg"]
+[ext_resource type="Material" uid="uid://bjd0o5402k21y" path="res://assets/materials/red.tres" id="2_stq5d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n5r8n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ipgki"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0j2do"]
+size = Vector3(0.2, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbrbo"]
+size = Vector3(0.2, 3, 0.2)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_p4ueg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_stq5d")
+mesh = SubResource("BoxMesh_n5r8n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ipgki")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+collision_layer = 2
+collision_mask = 13
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.02
+freeze = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_0j2do")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = ExtResource("2_stq5d")
+mesh = SubResource("BoxMesh_xbrbo")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+node_a = NodePath("..")
+node_b = NodePath("../RigidBody3D")
+params/bias = 0.99
+motor/enable = true
+motor/target_velocity = 0.0

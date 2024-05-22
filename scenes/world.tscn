@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://qgu65wltrbjn"]
+[gd_scene load_steps=9 format=3 uid="uid://qgu65wltrbjn"]
 
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_dtjck"]
+[ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="2_dcf63"]
+[ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_wc17m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w681j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,6 +16,10 @@ background_mode = 2
 sky = SubResource("Sky_6v4k1")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_hd5ly"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l57r5"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -29,12 +35,28 @@ use_collision = true
 size = Vector3(100, 1, 100)
 
 [node name="Car" parent="." instance=ExtResource("1_dtjck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57417, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Car"]
-transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, 5.374, 1.82383, 7.568)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.02416e-07, 1.57417, 4.343)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.936317, 0.351155, 0, -0.351155, 0.936317, 0, -3.17012, 15.5482)
 use_collision = true
 size = Vector3(10, 10, 10)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.02416e-07, 1.28662, -2)
+collision_layer = 4
+collision_mask = 15
+mass = 3.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+material_override = ExtResource("2_wc17m")
+mesh = SubResource("BoxMesh_hd5ly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_l57r5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535, 7.659, 2.897, -1.008)
+
+[node name="Button" parent="." instance=ExtResource("2_dcf63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -4)

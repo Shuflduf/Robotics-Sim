@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtn6hmrw2qspb"]
+[gd_scene load_steps=3 format=3 uid="uid://dtn6hmrw2qspb"]
+
+[ext_resource type="Script" path="res://scripts/wheelbase.gd" id="1_6gtxt"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1u4n7"]
 height = 0.1
@@ -7,10 +9,11 @@ height = 0.1
 use_as_traction = true
 use_as_steering = true
 wheel_rest_length = 0.2
-wheel_friction_slip = 1.0
+wheel_friction_slip = 0.5
 suspension_stiffness = 30.0
 damping_compression = 0.8
 damping_relaxation = 0.9
+script = ExtResource("1_6gtxt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
