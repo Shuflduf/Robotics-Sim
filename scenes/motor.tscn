@@ -4,14 +4,16 @@
 [ext_resource type="Material" uid="uid://bjd0o5402k21y" path="res://assets/materials/red.tres" id="2_stq5d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_n5r8n"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ipgki"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0j2do"]
-size = Vector3(0.2, 3, 0.2)
+size = Vector3(0.1, 1.5, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xbrbo"]
-size = Vector3(0.2, 3, 0.2)
+size = Vector3(0.1, 1.5, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 collision_layer = 2
@@ -30,17 +32,16 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 collision_layer = 2
 collision_mask = 13
 axis_lock_angular_y = true
-axis_lock_angular_z = true
 mass = 0.02
 freeze = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.727912, -0.0120119)
 shape = SubResource("BoxShape3D_0j2do")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.727912, -0.0120119)
 material_override = ExtResource("2_stq5d")
 mesh = SubResource("BoxMesh_xbrbo")
 

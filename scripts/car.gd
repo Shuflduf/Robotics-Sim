@@ -23,27 +23,23 @@ func _ready():
 	pickup_pos.position = NORMAL_PICKUP_POS if normal_pickup else FAR_PICKUP_POS
 	
 	await timer(1)
-	engine_force = 20
-	await timer(2)
-	engine_force = 0
-	brake = 40
+	await move(20, 2)
 	await grab()
-	await timer(0.5)
-	#steering = deg_to_rad(179)
-	brake = 0
-	engine_force = -20
-	await timer(1)
-	turn(DIRECTION.Right, 10, 2)
-	#engine_force = 30
-	await timer(1)
-	throw(60)
-	
-	#for i in 3:
-		#await pickup_and_drop()
-	#
+	await move(-20, 2)
+	await stop(100)
+	await turn(DIRECTION.Right, 5, 1)
+	await throw(30)
+	await move(15, 3)
+	await stop(50)
 	#await grab()
-	#engine_force = -20
-
+	#await turn(DIRECTION.Left, 50, 2.2)
+	#await move(-20, 2.4)
+	#await stop(20)
+	#await turn(DIRECTION.Right, 5, 1.6)
+	#await move(-10, 1.6)
+	#await stop(10)
+	await push_down()
+	
 func grab():
 	print(pickup_detect.get_overlapping_bodies())
 	if not pickup_detect.get_overlapping_bodies().is_empty():
@@ -60,6 +56,7 @@ func grab():
 		held_item.rotation = Vector3.ZERO
 		await pos_tween.finished
 		held_item.global_position = pickup_pos.global_position
+		await timer(0.5)
 		return
 		
 func let_go():
@@ -69,12 +66,16 @@ func let_go():
 		remove_child(held_item)
 		get_tree().root.get_child(0).add_child(held_item)	
 		held_item = null
+	await timer(0.5)
+	return
 		
 func push_down():
-	motor.run(60)
+	motor.run(80)
 	await get_tree().create_timer(1).timeout
-	motor.run(-60)
+	motor.run(-80)
 	await get_tree().create_timer(0.5).timeout
+	motor.run(0)
+	await timer(0.5)
 	return
 
 func timer(time):
@@ -90,8 +91,10 @@ func throw(force: int):
 		remove_child(held_item)
 		get_tree().root.get_child(0).add_child(held_item)	
 		held_item = null
+	await timer(0.5)
+	return
 
-func turn(dir: DIRECTION, strength: int, time: int):
+func turn(dir: DIRECTION, strength: int, time: float):
 	for wheel in wheels:
 		if wheel.desired_direction == dir:
 			wheel.engine_force = -strength * 50
@@ -99,8 +102,21 @@ func turn(dir: DIRECTION, strength: int, time: int):
 		else:
 			wheel.engine_force = strength * 50
 	await timer(time)
+	
 	for wheel in wheels:
-
 		wheel.engine_force = 0
+	
+	await timer(0.5)
+	return
 
-		
+func move(power: int, time: float):
+	engine_force = power
+	await timer(time)
+	engine_force = 0
+	return
+	
+func stop(power: int):
+	brake = power
+	await timer(0.5)
+	brake = 0
+	return

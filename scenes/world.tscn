@@ -56,7 +56,7 @@ mesh = SubResource("BoxMesh_hd5ly")
 shape = SubResource("BoxShape3D_l57r5")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535, 7.659, 2.897, -1.008)
+transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535, 11.334, 2.897, -1.008)
 
 [node name="Button" parent="." instance=ExtResource("2_dcf63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -4)
