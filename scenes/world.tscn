@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://qgu65wltrbjn"]
+[gd_scene load_steps=10 format=3 uid="uid://qgu65wltrbjn"]
 
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_dtjck"]
 [ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="2_dcf63"]
 [ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_wc17m"]
+[ext_resource type="PackedScene" uid="uid://cbo3hpr1cxxgu" path="res://scenes/motor.tscn" id="4_0k7rq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w681j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,3 +61,6 @@ transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535
 
 [node name="Button" parent="." instance=ExtResource("2_dcf63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -4)
+
+[node name="Motor" parent="." instance=ExtResource("4_0k7rq")]
+transform = Transform3D(1, 0, 0, 0, 0.801369, -0.598171, 0, 0.598171, 0.801369, 4.02369, 3.46382, 0)

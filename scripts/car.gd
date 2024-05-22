@@ -23,25 +23,25 @@ func _ready():
 	pickup_pos.position = NORMAL_PICKUP_POS if normal_pickup else FAR_PICKUP_POS
 	
 	await timer(1)
-	await move(20, 2)
-	await grab()
-	await move(-20, 2)
-	await stop(100)
-	await turn(DIRECTION.Right, 5, 1)
-	await let_go(30)
-	await move(15, 3)
-	await stop(50)
-	await grab()
-	await turn(DIRECTION.Left, 50, 2.2)
-	await move(-20, 2.5)
-	await stop(20)
-	await turn(DIRECTION.Right, 5, 2.2)
-	await move(-10, 0.5)
-	await stop(20)
+	#await move(20, 2)
+	#await grab()
+	#await move(-20, 2)
+	#await stop(100)
+	#await turn(DIRECTION.Right, 5, 1)
+	#await let_go(30)
+	#await move(15, 3)
+	#await stop(50)
+	#await grab()
+	#await turn(DIRECTION.Left, 50, 2.2)
+	#await move(-20, 2.5)
+	#await stop(20)
+	#await turn(DIRECTION.Right, 5, 2.2)
+	#await move(-10, 0.5)
+	#await stop(20)
 	#for i in 3:	
 		#brake = 100
 		#await push_down()
-	brake = 0
+	#brake = 0
 	await move(300, 10)
 		
 func grab():
