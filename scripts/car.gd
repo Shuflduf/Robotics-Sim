@@ -28,52 +28,61 @@ func _ready():
 	await move(-20, 2)
 	await stop(100)
 	await turn(DIRECTION.Right, 5, 1)
-	await throw(30)
+	await let_go(30)
 	await move(15, 3)
 	await stop(50)
-	#await grab()
-	#await turn(DIRECTION.Left, 50, 2.2)
-	#await move(-20, 2.4)
-	#await stop(20)
-	#await turn(DIRECTION.Right, 5, 1.6)
-	#await move(-10, 1.6)
-	#await stop(10)
-	await push_down()
-	
+	await grab()
+	await turn(DIRECTION.Left, 50, 2.2)
+	await move(-20, 2.5)
+	await stop(20)
+	await turn(DIRECTION.Right, 5, 2.2)
+	await move(-10, 0.5)
+	await stop(20)
+	for i in 3:	
+		brake = 100
+		await push_down()
+	brake = 0
+	await move(300, 10)
+		
 func grab():
 	print(pickup_detect.get_overlapping_bodies())
 	if not pickup_detect.get_overlapping_bodies().is_empty():
 		held_item = pickup_detect.get_overlapping_bodies()[0]
 		held_item.freeze = true
-		var temp_pos = held_item.global_position
-		var temp_rot = held_item.global_rotation
+		var temp_pos = held_item.global_transform
 		held_item.get_parent().remove_child(held_item)
 		add_child(held_item)
-		held_item.global_position = temp_pos
-		held_item.global_rotation = temp_rot
+		held_item.global_transform = temp_pos
+		
 		var pos_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-		pos_tween.tween_property(held_item, "global_position", pickup_pos.global_position, 0.5)
-		held_item.rotation = Vector3.ZERO
+		pos_tween.tween_property(held_item, "global_transform", pickup_pos.global_transform, 0.5)
+		
+		#held_item.rotation = Vector3.ZERO
 		await pos_tween.finished
-		held_item.global_position = pickup_pos.global_position
+		held_item.global_transform = pickup_pos.global_transform
 		await timer(0.5)
 		return
 		
-func let_go():
+func let_go(force: int = 0):
 	if held_item != null:
 		held_item.freeze = false
-		held_item.position = held_item.global_position
+		var temp_pos = held_item.global_transform
+		#held_item.position = held_item.global_position
 		remove_child(held_item)
 		get_tree().root.get_child(0).add_child(held_item)	
+		held_item.global_transform = temp_pos
+		held_item.apply_impulse((Vector3.FORWARD.rotated(\
+			Vector3.UP, deg_to_rad(global_rotation_degrees.y + 180)) * force) + Vector3.UP * force / 10)
+		
 		held_item = null
 	await timer(0.5)
 	return
 		
 func push_down():
 	motor.run(80)
-	await get_tree().create_timer(1).timeout
-	motor.run(-80)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(2).timeout
+	motor.run(-120)
+	await get_tree().create_timer(0.8).timeout
 	motor.run(0)
 	await timer(0.5)
 	return
@@ -87,7 +96,7 @@ func throw(force: int):
 		held_item.freeze = false
 		held_item.position = held_item.global_position
 		held_item.apply_impulse((Vector3.FORWARD.rotated(\
-				Vector3.UP, deg_to_rad(global_rotation_degrees.y + 180)) * force) + Vector3.UP * force / 10)
+			Vector3.UP, deg_to_rad(global_rotation_degrees.y + 180)) * force) + Vector3.UP * force / 10)
 		remove_child(held_item)
 		get_tree().root.get_child(0).add_child(held_item)	
 		held_item = null

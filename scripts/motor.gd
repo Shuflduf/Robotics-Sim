@@ -4,7 +4,7 @@ extends StaticBody3D
 @onready var joint: HingeJoint3D = %HingeJoint3D
 @onready var rigid_body = $RigidBody3D
 
-func run(speed):
+func run(speed: float):
 	if speed == 0:
 		rigid_body.freeze = true
 		return
