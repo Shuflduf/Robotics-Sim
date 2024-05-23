@@ -1,12 +1,14 @@
 class_name Motor
-extends RigidBody3D
+extends JoltGeneric6DOFJoint3D
 
-func run(_speed: float):
-	return
+#@onready var motor = $Motor
+@export var arm : RigidBody3D
+
+func run(speed: float):
 	#if speed == 0:
-		#rigid_body.freeze = true
+		#arm.freeze = true
 		#return
 	#else:
-		#rigid_body.freeze = false
-	#joint.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY, deg_to_rad(speed))
+		#arm.freeze = false
+	set_param_x(JoltGeneric6DOFJoint3D.PARAM_ANGULAR_MOTOR_TARGET_VELOCITY, speed / 30)
 	

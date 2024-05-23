@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ggm3m6b1ejxq"]
+[gd_scene load_steps=10 format=3 uid="uid://ggm3m6b1ejxq"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_6x1qd"]
 [ext_resource type="PackedScene" uid="uid://dtn6hmrw2qspb" path="res://scenes/wheelbase.tscn" id="2_8dx6b"]
 [ext_resource type="Material" uid="uid://b8ybdy8a758ni" path="res://assets/materials/cyan.tres" id="3_uvtuk"]
 [ext_resource type="PackedScene" uid="uid://cbo3hpr1cxxgu" path="res://scenes/motor.tscn" id="3_wx323"]
+[ext_resource type="Script" path="res://scripts/motor.gd" id="5_518rp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ejt0"]
 size = Vector3(2, 0.5, 3)
@@ -75,11 +76,16 @@ shape = SubResource("BoxShape3D_elfkc")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.8)
 
-[node name="Motor" parent="." instance=ExtResource("3_wx323")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08639, -1)
+[node name="MotorArm" parent="." instance=ExtResource("3_wx323")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.2)
+mass = 0.2
 
-[node name="PinJoint3D" type="HingeJoint3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.550008, -1)
+[node name="Motor" type="JoltGeneric6DOFJoint3D" parent="." node_paths=PackedStringArray("arm")]
+angular_limit_x/enabled = false
+angular_motor_x/enabled = true
+angular_motor_x/max_torque = 20.0
 node_a = NodePath("..")
-node_b = NodePath("../Motor")
-params/bias = 0.99
+node_b = NodePath("../MotorArm")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.2)
+script = ExtResource("5_518rp")
+arm = NodePath("../MotorArm")
