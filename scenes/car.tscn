@@ -76,6 +76,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.8)
 
 [node name="Motor" parent="." instance=ExtResource("3_wx323")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68639, -0.8)
-collision_layer = 0
-angular_velocity = Vector3(0, 0.0537561, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08639, -1)
+
+[node name="PinJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.550008, -1)
+node_a = NodePath("..")
+node_b = NodePath("../Motor")
+params/bias = 0.99
