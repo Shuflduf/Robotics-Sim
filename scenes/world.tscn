@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://qgu65wltrbjn"]
 
-[ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_dtjck"]
 [ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="2_dcf63"]
 [ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_wc17m"]
+[ext_resource type="PackedScene" uid="uid://dfw4n8jum3kdq" path="res://scenes/plane.tscn" id="3_5mmc5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w681j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -34,9 +34,6 @@ shadow_enabled = true
 use_collision = true
 size = Vector3(100, 1, 100)
 
-[node name="Car" parent="." instance=ExtResource("1_dtjck")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.02416e-07, 1.57417, 4.343)
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.902149, 0.431424, 0, -0.431424, 0.902149, 0, -3.17012, 13.5482)
 use_collision = true
@@ -59,4 +56,7 @@ shape = SubResource("BoxShape3D_l57r5")
 transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535, 11.334, 2.897, -1.008)
 
 [node name="Button" parent="." instance=ExtResource("2_dcf63")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+
+[node name="VehicleBody3D" parent="." instance=ExtResource("3_5mmc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60623, 3.06782)

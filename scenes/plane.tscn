@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfw4n8jum3kdq"]
+
+[ext_resource type="Material" uid="uid://bolhgor0wwewt" path="res://assets/materials/green.tres" id="1_gott2"]
+[ext_resource type="Script" path="res://scripts/plane.gd" id="1_rdfu6"]
+[ext_resource type="PackedScene" uid="uid://dtn6hmrw2qspb" path="res://scenes/wheelbase.tscn" id="2_qmm8i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ktsxm"]
+size = Vector3(1.5, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f202c"]
+size = Vector3(1.5, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xx21c"]
+size = Vector3(5, 0.2, 0.7)
+
+[node name="VehicleBody3D" type="VehicleBody3D" node_paths=PackedStringArray("wheels")]
+script = ExtResource("1_rdfu6")
+wheels = [NodePath("VehicleWheel3D"), NodePath("VehicleWheel3D2")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ktsxm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_f202c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+material_override = ExtResource("1_gott2")
+mesh = SubResource("BoxMesh_xx21c")
+
+[node name="VehicleWheel3D" parent="." instance=ExtResource("2_qmm8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.5, 1.4)
+suspension_stiffness = 60.0
+desired_direction = 1
+
+[node name="VehicleWheel3D2" parent="." instance=ExtResource("2_qmm8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.5, 1.4)
+suspension_stiffness = 60.0
+
+[node name="VehicleWheel3D3" parent="." instance=ExtResource("2_qmm8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7)
+wheel_friction_slip = 0.0
+desired_direction = 2

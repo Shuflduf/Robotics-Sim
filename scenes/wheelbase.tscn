@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtn6hmrw2qspb"]
+[gd_scene load_steps=4 format=3 uid="uid://dtn6hmrw2qspb"]
 
 [ext_resource type="Script" path="res://scripts/wheelbase.gd" id="1_6gtxt"]
+[ext_resource type="Material" uid="uid://bolhgor0wwewt" path="res://assets/materials/green.tres" id="2_nplic"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1u4n7"]
 height = 0.1
@@ -17,4 +18,5 @@ script = ExtResource("1_6gtxt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("2_nplic")
 mesh = SubResource("CylinderMesh_1u4n7")

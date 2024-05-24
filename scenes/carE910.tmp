@@ -17,13 +17,12 @@ size = Vector3(1, 1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elfkc"]
 
-[node name="VehicleBody3D" type="VehicleBody3D" node_paths=PackedStringArray("wheels")]
+[node name="VehicleBody3D" type="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_6x1qd")
 normal_pickup = null
-wheels = [NodePath("VehicleWheel3D1"), NodePath("VehicleWheel3D2"), NodePath("VehicleWheel3D3"), NodePath("VehicleWheel3D4")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)

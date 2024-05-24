@@ -1,10 +1,9 @@
-extends VehicleBody3D
+class_name Car
+extends Vehicle
 
 @onready var pickup_detect = %PickupDetect
 @onready var pickup_pos = %PickupPos
 @onready var motor: Motor = $Motor
-
-@onready var wheels = [%VehicleWheel3D1, %VehicleWheel3D2, %VehicleWheel3D3, %VehicleWheel3D4]
 
 var held_item: RigidBody3D
 
@@ -12,11 +11,6 @@ const FAR_PICKUP_POS = Vector3(0, -0.7, 1.7)
 const NORMAL_PICKUP_POS = Vector3(0, -0.4, 0.8)
 
 @export var normal_pickup: bool = true
-
-enum DIRECTION {
-	Left,
-	Right,
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +29,7 @@ func _ready():
 	await turn(DIRECTION.Left, 50, 2.2)
 	await move(-20, 2.5)
 	await stop(20)
-	await turn(DIRECTION.Right, 5, 2.2)
+	await turn(DIRECTION.Right, 5, 2.3)
 	await move(-10, 1)
 	await stop(20)
 	for i in 3:	
@@ -94,9 +88,7 @@ func push_down():
 	await timer(0.5)
 	return
 
-func timer(time):
-	await get_tree().create_timer(time).timeout
-	return
+
 
 func throw(force: int):
 	if held_item != null:
@@ -114,29 +106,6 @@ func throw(force: int):
 	await timer(0.5)
 	return
 
-func turn(dir: DIRECTION, strength: int, time: float):
-	for wheel in wheels:
-		if wheel.desired_direction == dir:
-			wheel.engine_force = -strength * 50
-			print("AJKGFHD")
-		else:
-			wheel.engine_force = strength * 50
-	await timer(time)
-	
-	for wheel in wheels:
-		wheel.engine_force = 0
-	
-	await timer(0.5)
-	return
 
-func move(power: int, time: float):
-	engine_force = power
-	await timer(time)
-	engine_force = 0
-	return
-	
-func stop(power: int):
-	brake = power
-	await timer(0.5)
-	brake = 0
-	return
+
+
