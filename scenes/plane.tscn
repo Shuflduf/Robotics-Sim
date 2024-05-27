@@ -39,5 +39,7 @@ suspension_stiffness = 60.0
 
 [node name="VehicleWheel3D3" parent="." instance=ExtResource("2_qmm8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7)
+use_as_traction = false
+use_as_steering = false
 wheel_friction_slip = 0.0
 desired_direction = 2

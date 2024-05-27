@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="2_dcf63"]
 [ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_wc17m"]
-[ext_resource type="PackedScene" uid="uid://dfw4n8jum3kdq" path="res://scenes/plane.tscn" id="3_5mmc5"]
+[ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="3_yq1bl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w681j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -58,5 +58,6 @@ transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535
 [node name="Button" parent="." instance=ExtResource("2_dcf63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
-[node name="VehicleBody3D" parent="." instance=ExtResource("3_5mmc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60623, 3.06782)
+[node name="VehicleBody3D" parent="." instance=ExtResource("3_yq1bl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 3.5)
+normal_pickup = true
