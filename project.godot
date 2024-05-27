@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="RoboticsSim"
+config/name="Sparkforge"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.png"
 
 [layer_names]
 
