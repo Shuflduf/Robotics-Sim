@@ -14,6 +14,9 @@ const NORMAL_PICKUP_POS = Vector3(0, -0.4, 0.8)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if !enabled:
+		queue_free()
+		
 	pickup_pos.position = NORMAL_PICKUP_POS if normal_pickup else FAR_PICKUP_POS
 	
 	await timer(1)

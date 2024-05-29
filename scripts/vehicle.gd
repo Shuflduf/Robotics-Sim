@@ -2,6 +2,7 @@ class_name Vehicle
 extends VehicleBody3D
 
 @export var wheels: Array[VehicleWheel3D]
+@export var enabled := true
 
 enum DIRECTION {
 	Left,

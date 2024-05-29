@@ -17,7 +17,7 @@ size = Vector3(1, 1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elfkc"]
 
-[node name="VehicleBody3D" type="VehicleBody3D" node_paths=PackedStringArray("wheels")]
+[node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("wheels")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 collision_layer = 2
 collision_mask = 13

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://qgu65wltrbjn"]
+[gd_scene load_steps=10 format=3 uid="uid://qgu65wltrbjn"]
 
 [ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="2_dcf63"]
 [ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_wc17m"]
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="3_yq1bl"]
+[ext_resource type="PackedScene" uid="uid://dfw4n8jum3kdq" path="res://scenes/plane.tscn" id="4_djvli"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w681j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -52,12 +53,15 @@ mesh = SubResource("BoxMesh_hd5ly")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_l57r5")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, -0.149535, 11.334, 2.897, -1.008)
-
 [node name="Button" parent="." instance=ExtResource("2_dcf63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
-[node name="VehicleBody3D" parent="." instance=ExtResource("3_yq1bl")]
+[node name="Car" parent="." instance=ExtResource("3_yq1bl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 3.5)
-normal_pickup = true
+enabled = false
+
+[node name="Plane" parent="." instance=ExtResource("4_djvli")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 13.7, 2)
+
+[node name="Camera3D" type="Camera3D" parent="Plane"]
+transform = Transform3D(0.956814, 0, 0.290702, 0, 1, 0, -0.290702, 0, 0.956814, 1.734, 1.567, 5.332)
