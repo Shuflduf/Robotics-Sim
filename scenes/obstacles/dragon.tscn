@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://rvv8a2f37akf"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/dragon.gd" id="1_ab10v"]
+[ext_resource type="Material" uid="uid://cq666ppiw7srt" path="res://assets/materials/dim_yellow.tres" id="1_hseya"]
+[ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_bfdxh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4p1cm"]
+size = Vector3(1, 0.1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ibnh"]
+size = Vector3(1, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_upfia"]
+size = Vector3(1, 0.1, 0.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jd3sg"]
+size = Vector3(1, 0.1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ep8kp"]
+size = Vector3(0.8, 0.2, 0.8)
+
+[node name="Dragon" type="StaticBody3D"]
+collision_mask = 2
+script = ExtResource("1_ab10v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4p1cm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_hseya")
+mesh = SubResource("BoxMesh_4ibnh")
+
+[node name="Button" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.7, 0.4)
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button"]
+shape = SubResource("BoxShape3D_upfia")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Button"]
+material_override = ExtResource("2_bfdxh")
+mesh = SubResource("BoxMesh_jd3sg")
+
+[node name="JoltGeneric6DOFJoint3D" type="JoltGeneric6DOFJoint3D" parent="."]
+angular_limit_x/enabled = false
+angular_motor_x/enabled = true
+angular_motor_x/max_torque = 10.0
+node_a = NodePath("..")
+node_b = NodePath("../Button")
+exclude_nodes_from_collision = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 0.1, -0.1)
+shape = SubResource("BoxShape3D_ep8kp")
+
+[node name="Sprite3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+billboard = 1
+text = "✅"
+font_size = 256
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

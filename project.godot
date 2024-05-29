@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Sparkforge"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://scenes/table.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/icon.png"
+
+[display]
+
+window/size/mode=2
 
 [layer_names]
 

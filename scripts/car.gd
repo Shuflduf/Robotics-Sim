@@ -20,27 +20,51 @@ func _ready():
 	pickup_pos.position = NORMAL_PICKUP_POS if normal_pickup else FAR_PICKUP_POS
 	
 	await timer(1)
-	await move(20, 2)
-	await grab()
-	await move(-20, 2)
-	await stop(100)
-	await turn(DIRECTION.Right, 5, 1)
-	await let_go(30)
-	await move(15, 3.5)
-	await stop(20)
-	await grab()
-	await turn(DIRECTION.Left, 50, 2.2)
-	await move(-20, 2.5)
-	await stop(20)
-	await turn(DIRECTION.Right, 5, 2.3)
-	await move(-10, 1)
-	await stop(20)
-	for i in 3:	
-		brake = 100
+	await turn(DIRECTION.Left, 5, 0.3)
+	await move(30, 3)
+	await move(150, 2.3)
+	#await timer(0.5)
+	await stop(5)
+	await turn(DIRECTION.Right, 40, 0.4)
+	await move(-40, 1.8)
+	await stop(10)
+	for i in 3:
 		await push_down()
-	brake = 0
-	await let_go(100)
-	await move(300, 10)
+	#await motor.run(-200)
+	
+#region two
+	#await timer(1)
+	#await turn(DIRECTION.Right, 5, 1)
+	#await move(20, 2)
+	#await stop(5)
+	#await turn(DIRECTION.Left, 3, 0.6)
+	#await move(20, 2)
+#endregion
+	
+#region one
+	#await timer(1)
+	#await move(20, 2)
+	#await grab()
+	#await move(-20, 2)
+	#await stop(100)
+	#await turn(DIRECTION.Right, 5, 1)
+	#await let_go(30)
+	#await move(15, 3.5)
+	#await stop(20)
+	#await grab()
+	#await turn(DIRECTION.Left, 50, 2.2)
+	#await move(-20, 2.5)
+	#await stop(20)
+	#await turn(DIRECTION.Right, 5, 2.3)
+	#await move(-10, 1)
+	#await stop(20)
+	#for i in 3:	
+		#brake = 100
+		#await push_down()
+	#brake = 0
+	#await let_go(100)
+	#await move(300, 10)
+#endregion
 		
 func grab():
 	print(pickup_detect.get_overlapping_bodies())
