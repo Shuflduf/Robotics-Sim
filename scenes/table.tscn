@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://caqlex3wtisht"]
+[gd_scene load_steps=8 format=3 uid="uid://caqlex3wtisht"]
 
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_plqvh"]
 [ext_resource type="PackedScene" uid="uid://rvv8a2f37akf" path="res://scenes/obstacles/dragon.tscn" id="2_sy0fu"]
-[ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="3_8xkqg"]
+[ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/obstacles/button.tscn" id="3_8xkqg"]
+[ext_resource type="PackedScene" uid="uid://tqobwmk1cyh2" path="res://scenes/obstacles/push_down.tscn" id="4_hj7dr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cs6rx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,7 +33,7 @@ collision_mask = 6
 size = Vector3(40, 0.5, 25)
 
 [node name="Car" parent="." instance=ExtResource("1_plqvh")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17, 1.3, 9)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17, 0.7, 9)
 
 [node name="Dragon" parent="." instance=ExtResource("2_sy0fu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.373, 0.3, 0)
@@ -42,3 +43,6 @@ transform = Transform3D(1, 0, 0, 0, 0.428935, 0.903335, 0, -0.903335, 0.428935, 
 
 [node name="Button" parent="." instance=ExtResource("3_8xkqg")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -17, 0.3, -10)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("4_hj7dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.3, -10)

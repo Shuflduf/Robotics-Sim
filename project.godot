@@ -29,3 +29,4 @@ window/size/mode=2
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
+jolt_3d/sleep/enabled=false

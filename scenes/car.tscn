@@ -21,6 +21,7 @@ size = Vector3(1, 1, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 collision_layer = 2
 collision_mask = 13
+can_sleep = false
 script = ExtResource("1_6x1qd")
 wheels = [NodePath("VehicleWheel3D1"), NodePath("VehicleWheel3D2"), NodePath("VehicleWheel3D3"), NodePath("VehicleWheel3D4")]
 
@@ -44,10 +45,12 @@ desired_direction = 1
 [node name="VehicleWheel3D3" parent="." instance=ExtResource("2_8dx6b")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.1, -1)
+use_as_steering = false
 
 [node name="VehicleWheel3D4" parent="." instance=ExtResource("2_8dx6b")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.1, -1)
+use_as_steering = false
 desired_direction = 1
 
 [node name="Pickup" type="MeshInstance3D" parent="."]

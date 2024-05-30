@@ -19,17 +19,28 @@ func _ready():
 		
 	pickup_pos.position = NORMAL_PICKUP_POS if normal_pickup else FAR_PICKUP_POS
 	
+	
 	await timer(1)
-	await turn(DIRECTION.Left, 5, 0.3)
-	await move(30, 3)
-	await move(150, 2.3)
-	#await timer(0.5)
-	await stop(5)
-	await turn(DIRECTION.Right, 40, 0.4)
-	await move(-40, 1.8)
-	await stop(10)
+	await motor.run(30)
+	await move(400, 0.5)
+	await turn(DIRECTION.Right, 50, 0.5)
+	await timer(1.3)
+	await motor.run(-80)
+	await move(-50, 1)
+	await motor.run(0)
+	#await turn(DIRECTION.Right, 50, 0.05)
+	brake = 3
 	for i in 3:
-		await push_down()
+		await push_down(2, true)
+	brake = 0
+	await turn(DIRECTION.Left, 50, 0.4)
+	await move(150, 0.6)
+	await turn(DIRECTION.Right, 30, 0.3)
+	#await stop(5)
+	await move(-200, 1.2)
+	brake = 20
+	await push_down(2)
+	
 	#await motor.run(-200)
 	
 #region two
@@ -106,13 +117,14 @@ func let_go(force: int = 0):
 	await timer(0.5)
 	return
 		
-func push_down():
-	motor.run(60)
-	await timer(1.5)
-	motor.run(-60)
-	await timer(0.8)
+func push_down(speed: int, no_wait := false):
+	motor.run(60 * speed)
+	await timer(1.5 / speed)
+	motor.run(-60 * speed)
+	await timer(0.8 / speed)
 	motor.run(0)
-	await timer(0.5)
+	if !no_wait:
+		await timer(0.5)
 	return
 
 

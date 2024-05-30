@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://tqobwmk1cyh2"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/push_down.gd" id="1_7uny0"]
+[ext_resource type="Material" uid="uid://cq666ppiw7srt" path="res://assets/materials/dim_yellow.tres" id="1_llwg3"]
+[ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_epboa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bc12v"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gndwa"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmj05"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_720nc"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rtb34"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_caq8j"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_34ci1"]
+size = Vector3(2, 0.1, 2)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+collision_mask = 6
+script = ExtResource("1_7uny0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bc12v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_llwg3")
+mesh = SubResource("BoxMesh_gndwa")
+
+[node name="Button" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+collision_layer = 8
+collision_mask = 6
+mass = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button"]
+shape = SubResource("BoxShape3D_vmj05")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Button"]
+material_override = ExtResource("2_epboa")
+mesh = SubResource("BoxMesh_720nc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+shape = SubResource("BoxShape3D_rtb34")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+material_override = ExtResource("2_epboa")
+mesh = SubResource("BoxMesh_caq8j")
+
+[node name="JoltGeneric6DOFJoint3D" type="JoltGeneric6DOFJoint3D" parent="."]
+linear_limit_y/lower = -1.2
+linear_motor_y/enabled = true
+linear_motor_y/target_velocity = 1.0
+linear_motor_y/max_force = 3.0
+node_a = NodePath("..")
+node_b = NodePath("../Button")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_34ci1")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+billboard = 1
+text = "✅"
+font_size = 256
+outline_size = 0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

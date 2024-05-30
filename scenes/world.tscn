@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://qgu65wltrbjn"]
 
-[ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/button.tscn" id="2_dcf63"]
+[ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/obstacles/button.tscn" id="2_dcf63"]
 [ext_resource type="Material" uid="uid://dstbis8gg24gs" path="res://assets/materials/bright_yellow.tres" id="2_wc17m"]
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="3_yq1bl"]
 [ext_resource type="PackedScene" uid="uid://dfw4n8jum3kdq" path="res://scenes/plane.tscn" id="4_djvli"]
