@@ -44,5 +44,5 @@ transform = Transform3D(1, 0, 0, 0, 0.428935, 0.903335, 0, -0.903335, 0.428935, 
 [node name="Button" parent="." instance=ExtResource("3_8xkqg")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -17, 0.3, -10)
 
-[node name="StaticBody3D" parent="." instance=ExtResource("4_hj7dr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.3, -10)
+[node name="PushDown" parent="." instance=ExtResource("4_hj7dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.3, -10)

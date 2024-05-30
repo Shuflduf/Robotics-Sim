@@ -37,9 +37,10 @@ func _ready():
 	await move(150, 0.6)
 	await turn(DIRECTION.Right, 30, 0.3)
 	#await stop(5)
-	await move(-200, 1.2)
+	await move(-200, 1)
 	brake = 20
 	await push_down(2)
+	await move(10000, 10)
 	
 	#await motor.run(-200)
 	
