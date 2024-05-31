@@ -24,9 +24,9 @@ func _ready():
 	await motor.run(30)
 	await move(400, 0.5)
 	await turn(DIRECTION.Right, 50, 0.5)
-	await timer(1.3)
+	await timer(0.7)
 	await motor.run(-80)
-	await move(-50, 1)
+	await move(-50, 1.1)
 	await motor.run(0)
 	#await turn(DIRECTION.Right, 50, 0.05)
 	brake = 3
@@ -35,14 +35,17 @@ func _ready():
 	brake = 0
 	await turn(DIRECTION.Left, 50, 0.4)
 	await move(150, 0.6)
-	await turn(DIRECTION.Right, 30, 0.3)
-	#await stop(5)
-	await move(-200, 1)
+	await turn(DIRECTION.Right, 30, 0.25)
+	await move(-200, 1.1)
 	brake = 20
 	await push_down(2)
-	await move(10000, 10)
+	await move(100, 1.2)
+	await turn(DIRECTION.Right, 5, 0.2)
+	await move(-100, 1)
+	motor.run(80)
+	await turn(DIRECTION.Left, 30, 0.2)
+	motor.run(-40)
 	
-	#await motor.run(-200)
 	
 #region two
 	#await timer(1)
@@ -128,8 +131,6 @@ func push_down(speed: int, no_wait := false):
 		await timer(0.5)
 	return
 
-
-
 func throw(force: int):
 	if held_item != null:
 		held_item.freeze = false
@@ -145,7 +146,4 @@ func throw(force: int):
 		held_item = null
 	await timer(0.5)
 	return
-
-
-
 

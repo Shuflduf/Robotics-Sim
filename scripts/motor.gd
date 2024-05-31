@@ -5,10 +5,8 @@ extends JoltGeneric6DOFJoint3D
 @export var arm : RigidBody3D
 
 func run(speed: float):
-	#if speed == 0:
-		#arm.freeze = true
-		#return
-	#else:
-		#arm.freeze = false
 	set_param_x(JoltGeneric6DOFJoint3D.PARAM_ANGULAR_MOTOR_TARGET_VELOCITY, speed / 30)
+	fix_arm()
 	
+func fix_arm():
+	arm.position = Vector3.ZERO

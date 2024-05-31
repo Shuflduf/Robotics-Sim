@@ -13,6 +13,7 @@ config_version=5
 config/name="Sparkforge"
 run/main_scene="res://scenes/table.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=60
 config/icon="res://assets/icon.png"
 
 [display]
@@ -28,5 +29,13 @@ window/size/mode=2
 
 [physics]
 
+common/max_physics_steps_per_frame=16
 3d/physics_engine="JoltPhysics3D"
 jolt_3d/sleep/enabled=false
+jolt_3d/solver/velocity_iterations=30
+jolt_3d/solver/position_iterations=8
+jolt_3d/solver/position_correction=0.0
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=1

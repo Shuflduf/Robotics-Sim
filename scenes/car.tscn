@@ -80,16 +80,15 @@ shape = SubResource("BoxShape3D_elfkc")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.8)
 
-[node name="MotorArm" parent="." instance=ExtResource("3_wx323")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.2)
-mass = 0.2
-
 [node name="Motor" type="JoltGeneric6DOFJoint3D" parent="." node_paths=PackedStringArray("arm")]
 angular_limit_x/enabled = false
 angular_motor_x/enabled = true
 angular_motor_x/max_torque = 20.0
 node_a = NodePath("..")
-node_b = NodePath("../MotorArm")
+node_b = NodePath("MotorArm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.2)
 script = ExtResource("5_518rp")
-arm = NodePath("../MotorArm")
+arm = NodePath("MotorArm")
+
+[node name="MotorArm" parent="Motor" instance=ExtResource("3_wx323")]
+mass = 0.2
