@@ -10,3 +10,5 @@ func run(speed: float):
 	
 func fix_arm():
 	arm.position = Vector3.ZERO
+	#arm.rotation.z = 0
+	#arm.rotation.y = 0

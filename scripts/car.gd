@@ -33,17 +33,18 @@ func _ready():
 	for i in 3:
 		await push_down(2, true)
 	brake = 0
-	await turn(DIRECTION.Left, 50, 0.4)
-	await move(150, 0.6)
-	await turn(DIRECTION.Right, 30, 0.25)
+	#await turn(DIRECTION.Left, 50, 0.4)
+	#await move(150, 0.6)
+	await turn(DIRECTION.Right, 30, 0.45)
 	await move(-200, 1.1)
 	brake = 20
-	await push_down(2)
+	#await push_down(2)
 	await move(100, 1.2)
 	await turn(DIRECTION.Right, 5, 0.2)
-	await move(-100, 1)
+	
 	motor.run(80)
-	await turn(DIRECTION.Left, 30, 0.2)
+	await move(-100, 2)
+	#await turn(DIRECTION.Left, 30, 0.2)
 	motor.run(-40)
 	
 	

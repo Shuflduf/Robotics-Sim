@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://caqlex3wtisht"]
+[gd_scene load_steps=9 format=3 uid="uid://caqlex3wtisht"]
 
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_plqvh"]
 [ext_resource type="PackedScene" uid="uid://rvv8a2f37akf" path="res://scenes/obstacles/dragon.tscn" id="2_sy0fu"]
 [ext_resource type="PackedScene" uid="uid://cefu4c86p78or" path="res://scenes/obstacles/button.tscn" id="3_8xkqg"]
 [ext_resource type="PackedScene" uid="uid://tqobwmk1cyh2" path="res://scenes/obstacles/push_down.tscn" id="4_hj7dr"]
+[ext_resource type="PackedScene" uid="uid://rs0b8n2q4qpd" path="res://scenes/obstacles/push_3_up.tscn" id="5_45n42"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cs6rx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -46,3 +47,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="PushDown" parent="." instance=ExtResource("4_hj7dr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.3, -10)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("5_45n42")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -7, 0.3, 1)
