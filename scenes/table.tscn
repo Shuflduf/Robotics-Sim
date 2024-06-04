@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://caqlex3wtisht"]
+[gd_scene load_steps=10 format=3 uid="uid://caqlex3wtisht"]
 
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_plqvh"]
 [ext_resource type="PackedScene" uid="uid://rvv8a2f37akf" path="res://scenes/obstacles/dragon.tscn" id="2_sy0fu"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://rs0b8n2q4qpd" path="res://scenes/obstacles/push_3_up.tscn" id="5_45n42"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cs6rx"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.8, 0.8, 0.8, 1)
+sky_horizon_color = Color(0.8, 0.8, 0.8, 1)
+ground_bottom_color = Color(0.8, 0.8, 0.8, 1)
+ground_horizon_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="Sky" id="Sky_17ngs"]
 sky_material = SubResource("ProceduralSkyMaterial_cs6rx")
@@ -18,6 +20,9 @@ background_mode = 2
 sky = SubResource("Sky_17ngs")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qmmb"]
+albedo_color = Color(0.548963, 0.548963, 0.548963, 1)
 
 [node name="Table" type="Node3D"]
 
@@ -36,17 +41,118 @@ size = Vector3(40, 0.5, 25)
 [node name="Car" parent="." instance=ExtResource("1_plqvh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17, 0.7, 9)
 
-[node name="Dragon" parent="." instance=ExtResource("2_sy0fu")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.373, 0.3, 0)
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.428935, 0.903335, 0, -0.903335, 0.428935, 0, 20.749, 13.415)
+current = true
 
-[node name="Button" parent="." instance=ExtResource("3_8xkqg")]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(288, 324)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.632029, 0, -0.774944, 0, 1, 0, 0.774944, 0, 0.632029, -20.545, 1.115, 2.3)
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer3"]
+handle_input_locally = false
+size = Vector2i(288, 324)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer3/SubViewport"]
+transform = Transform3D(0.632029, 0.460955, -0.622944, 0, 0.803857, 0.594823, 0.774944, -0.375945, 0.508061, -8.49, 5.3, -6.935)
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(288, 324)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer2/SubViewport"]
+transform = Transform3D(0.956305, -0.125408, 0.26411, 0, 0.903335, 0.428935, -0.292372, -0.410193, 0.863864, -15.185, 3.5, -3.475)
+
+[node name="SubViewportContainer4" type="SubViewportContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer4"]
+handle_input_locally = false
+size = Vector2i(288, 324)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer4/SubViewport"]
+transform = Transform3D(-0.0540788, 0.428307, -0.902013, 0, 0.903335, 0.428935, 0.998537, 0.0231963, -0.0488513, -11.695, 2.205, 0.37)
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Dragon" parent="Obstacles" instance=ExtResource("2_sy0fu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.373, 0.3, 0)
+
+[node name="Button" parent="Obstacles" instance=ExtResource("3_8xkqg")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -17, 0.3, -10)
 
-[node name="PushDown" parent="." instance=ExtResource("4_hj7dr")]
+[node name="PushDown" parent="Obstacles" instance=ExtResource("4_hj7dr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.3, -10)
 
-[node name="StaticBody3D" parent="." instance=ExtResource("5_45n42")]
+[node name="StaticBody3D" parent="Obstacles" instance=ExtResource("5_45n42")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -7, 0.3, 1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+material_override = SubResource("StandardMaterial3D_6qmmb")
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0, 8)
+size = Vector3(9, 1, 9)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 12.5)
+operation = 1
+radius = 9.0
+height = 1.0
+sides = 32

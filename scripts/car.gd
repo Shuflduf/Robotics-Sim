@@ -21,31 +21,36 @@ func _ready():
 	
 	
 	await timer(1)
+	
 	await motor.run(30)
 	await move(400, 0.5)
-	await turn(DIRECTION.Right, 50, 0.5)
+	await turn(DIRECTION.Right, 50, 0.47)
+	
 	await timer(0.7)
-	await motor.run(-80)
-	await move(-50, 1.1)
+	await motor.run(-70)
+	await move(-50, 1.2)
 	await motor.run(0)
-	#await turn(DIRECTION.Right, 50, 0.05)
 	brake = 3
 	for i in 3:
 		await push_down(2, true)
 	brake = 0
-	#await turn(DIRECTION.Left, 50, 0.4)
-	#await move(150, 0.6)
-	await turn(DIRECTION.Right, 30, 0.45)
-	await move(-200, 1.1)
-	brake = 20
-	await push_down(2)
-	await move(100, 1.2)
-	await turn(DIRECTION.Right, 5, 0.2)
 	
-	motor.run(80)
-	await move(-100, 2)
-	#await turn(DIRECTION.Left, 30, 0.2)
+	await turn(DIRECTION.Right, 30, 0.42)
+	await move(-180, 1)
+	await timer(0.2)
+	brake = 10
+	await push_down(2)
+	await timer(0.7)
+	
+	await move(200, 0.9)
+	await turn(DIRECTION.Right, 5, 0.21)
+	motor.run(22)
+	await move(-50, 2.6)
+	await turn(DIRECTION.Left, 5, 1)
 	motor.run(-40)
+	await timer(1)
+	#await turn(DIRECTION.Left, 5, 1)
+	await move(200, 2)
 	
 	
 #region two
@@ -122,7 +127,7 @@ func let_go(force: int = 0):
 	await timer(0.5)
 	return
 		
-func push_down(speed: int, no_wait := false):
+func push_down(speed := 1.0, no_wait := false):
 	motor.run(60 * speed)
 	await timer(1.5 / speed)
 	motor.run(-60 * speed)

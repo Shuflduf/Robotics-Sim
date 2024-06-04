@@ -20,6 +20,10 @@ config/icon="res://assets/icon.png"
 
 window/size/mode=2
 
+[editor]
+
+movie_writer/movie_file="C:/Users/michael935/OneDrive - Foundations for the Future Charter Academy/Documents/Godot/Robotics-Sim/vid_out/out.avi"
+
 [layer_names]
 
 3d_physics/layer_1="World"
