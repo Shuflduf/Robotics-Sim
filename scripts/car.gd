@@ -4,6 +4,7 @@ extends Vehicle
 @onready var pickup_detect = %PickupDetect
 @onready var pickup_pos = %PickupPos
 @onready var motor: Motor = $Motor
+@onready var label = $"../Control/Label"
 
 var held_item: RigidBody3D
 
@@ -11,6 +12,9 @@ const FAR_PICKUP_POS = Vector3(0, -0.7, 1.7)
 const NORMAL_PICKUP_POS = Vector3(0, -0.4, 0.8)
 
 @export var normal_pickup: bool = true
+
+var counting = true
+var stopwatch := -1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,11 +28,11 @@ func _ready():
 	
 	await motor.run(30)
 	await move(400, 0.5)
-	await turn(DIRECTION.Right, 50, 0.47)
+	await turn(DIRECTION.Right, 50, 0.5)
 	
 	await timer(0.7)
 	await motor.run(-70)
-	await move(-50, 1.2)
+	await move(-50, 1.1)
 	await motor.run(0)
 	brake = 3
 	for i in 3:
@@ -43,14 +47,17 @@ func _ready():
 	await timer(0.7)
 	
 	await move(200, 0.9)
-	await turn(DIRECTION.Right, 5, 0.21)
+	await turn(DIRECTION.Right, 5, 0.2)
 	motor.run(22)
-	await move(-50, 2.6)
-	await turn(DIRECTION.Left, 5, 1)
-	motor.run(-40)
-	await timer(1)
+	await move(-50, 2.47)
+	await turn(DIRECTION.Left, 3, 0.5)
+	motor.run(-100)
+	await turn(DIRECTION.Left, 10, 0.5)
+	motor.run(0)
+	
+	#await timer(1)
 	#await turn(DIRECTION.Left, 5, 1)
-	await move(200, 2)
+	await move(200, 4)
 	
 	
 #region two
@@ -86,7 +93,19 @@ func _ready():
 	#await let_go(100)
 	#await move(300, 10)
 #endregion
-		
+
+func _process(delta):
+	if counting:
+		stopwatch += delta
+		var time = stopwatch
+		var mins = int(time) / 60
+		time -= mins * 60
+		var secs = int(time) 
+		var mili = int((time - int(time)) * 100)
+		label.text = str("%0*d" % [2, mins]) + \
+		":" + str("%0*d" % [2, secs]) + \
+		":" + str("%0*d" % [2, mili]) 
+	
 func grab():
 	print(pickup_detect.get_overlapping_bodies())
 	if not pickup_detect.get_overlapping_bodies().is_empty():
@@ -153,3 +172,7 @@ func throw(force: int):
 	await timer(0.5)
 	return
 
+func _on_area_3d_body_entered(body):
+	if body == self and stopwatch > 3.0:
+		counting = false
+		label.modulate = Color("00e888")

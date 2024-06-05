@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://caqlex3wtisht"]
+[gd_scene load_steps=12 format=3 uid="uid://caqlex3wtisht"]
 
 [ext_resource type="PackedScene" uid="uid://ggm3m6b1ejxq" path="res://scenes/car.tscn" id="1_plqvh"]
 [ext_resource type="PackedScene" uid="uid://rvv8a2f37akf" path="res://scenes/obstacles/dragon.tscn" id="2_sy0fu"]
@@ -21,8 +21,17 @@ sky = SubResource("Sky_17ngs")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="LabelSettings" id="LabelSettings_scp4v"]
+font_size = 83
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qmmb"]
 albedo_color = Color(0.548963, 0.548963, 0.548963, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gtgfu"]
+height = 5.0
+radius = 9.0
 
 [node name="Table" type="Node3D"]
 
@@ -127,6 +136,18 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer4/SubViewport"]
 transform = Transform3D(-0.0540788, 0.428307, -0.902013, 0, 0.903335, 0.428935, 0.998537, 0.0231963, -0.0488513, -11.695, 2.205, 0.37)
 
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.9
+anchor_right = 0.25
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_scp4v")
+
 [node name="Obstacles" type="Node3D" parent="."]
 
 [node name="Dragon" parent="Obstacles" instance=ExtResource("2_sy0fu")]
@@ -156,3 +177,14 @@ operation = 1
 radius = 9.0
 height = 1.0
 sides = 32
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 12.5)
+shape = SubResource("CylinderShape3D_gtgfu")
+
+[connection signal="body_entered" from="Area3D" to="Car" method="_on_area_3d_body_entered"]

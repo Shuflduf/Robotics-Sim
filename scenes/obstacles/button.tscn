@@ -73,7 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
 billboard = 1
 text = "3"
 font_size = 357
-outline_size = 57
+outline_size = 40
 
 [node name="JoltGeneric6DOFJoint3D" type="JoltGeneric6DOFJoint3D" parent="."]
 angular_limit_x/lower = -0.436332

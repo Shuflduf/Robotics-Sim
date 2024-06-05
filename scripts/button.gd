@@ -11,4 +11,4 @@ func _on_area_3d_body_entered(body):
 			pressed_times -= 1
 			label.text = str(pressed_times)
 			if pressed_times == 0:
-				label.modulate = Color.GREEN
+				label.modulate = Color("00e888")
